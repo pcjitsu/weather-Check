@@ -3,24 +3,23 @@ const cityInput = document.getElementById('cityInput');
 const recentCitiesList = document.getElementById('recentCities');
 const forecastContainer = document.querySelector('.forecast');
 const searchButton = document.getElementById('citySearchBtn');
-
+const citySearch = cityInput.value.trim();
 
 // Event handler for searching weather
 function searchWeather(city) {
-    const citySearch = cityInput.value.trim();
 
-    if (citySearch === '') {
+    if (city === '') {
         alert('Please enter a city name.');
         return;
     }
 
     // Save the city to local storage for recent searches
-    saveRecentCity(citySearch);
+    saveRecentCity(city);
 
     // Fetch weather data from the API
     const apiKey = '525b4a6ab93b3489f9f9c289047be1bd';
-    const apiUrlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${citySearch}&appid=${apiKey}&units=imperial`;
-    const apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&appid=${apiKey}&units=imperial`;
+    const apiUrlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
+    const apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
 
     // Make an API request and update the current weather
     fetch(apiUrlCurrent)
@@ -98,7 +97,7 @@ function updateForecast(data) {
 }
 
 // Add Event Listener to search button
-searchButton.addEventListener('click', searchWeather);
+searchButton.addEventListener('click', searchWeather(citySearch));
 
 // Initial setup: Display recent cities
 displayRecentCities();
