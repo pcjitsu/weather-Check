@@ -20,10 +20,27 @@ function searchWeather() {
     
     // Fetch weather data from the API
     const apiKey = '525b4a6ab93b3489f9f9c289047be1bd';
-    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
+    const apiUrlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
+    const apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid="${apiKey}&units=imperial`;
+
+    //Make an API request and update the current weather    
+    fetch(apiUrlCurrent)
+        .then(response => response.json())
+        .then(data => {
+            // Process the data and update the forecast cards
+            todayForecast(data);
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Error fetching weather data:', error);
+            alert('Unable to fetch weather data. Please try again later.');
+        });
+
+
+
 
     // Make an API request and update the forecast
-    fetch(apiUrl)
+    fetch(apiUrlForecast)
         .then(response => response.json())
         .then(data => {
             // Process the data and update the forecast cards
@@ -34,7 +51,7 @@ function searchWeather() {
             console.error('Error fetching weather data:', error);
             alert('Unable to fetch weather data. Please try again later.');
         });
-}
+    };
 
 // Function to save a recent city to local storage
 function saveRecentCity(city) {
@@ -69,10 +86,19 @@ function displayRecentCities() {
     }
 }
 
+// Function to display the current weather forecast
+//class="current-weather"
+function todayForecast(data) {
+
+
+}
+
 // Function to update the weather forecast cards
+//class="forecast"
 function updateForecast(data) {
 
 }
+
 //add Event Listener to search button
 searchButton.addEventListener("click", searchWeather);
 
