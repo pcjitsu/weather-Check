@@ -4,23 +4,23 @@ const recentCitiesList = document.getElementById('recentCities');
 const forecastContainer = document.querySelector('.forecast');
 const searchButton = document.getElementById('citySearchBtn');
 
-// Event handler for searching weather
-function searchWeather() {
-    const city = cityInput.value.trim();
 
-    if (city === '') {
+// Event handler for searching weather
+function searchWeather(city) {
+    const citySearch = cityInput.value.trim();
+
+    if (citySearch === '') {
         alert('Please enter a city name.');
         return;
     }
 
     // Save the city to local storage for recent searches
-    saveRecentCity(city);
+    saveRecentCity(citySearch);
 
     // Fetch weather data from the API
-    const apiKeyForecast = '525b4a6ab93b3489f9f9c289047be1bd';
-    const apiKeyCurrent = '0eecb216d874a8406d3d4509c3c745bc';
-    const apiUrlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKeyForecast}&units=imperial`;
-    const apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid="${apiKeyCurrent}&units=imperial`;
+    const apiKey = '525b4a6ab93b3489f9f9c289047be1bd';
+    const apiUrlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${citySearch}&appid=${apiKey}&units=imperial`;
+    const apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&appid=${apiKey}&units=imperial`;
 
     // Make an API request and update the current weather
     fetch(apiUrlCurrent)
