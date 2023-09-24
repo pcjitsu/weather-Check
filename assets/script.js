@@ -19,9 +19,10 @@ function searchWeather() {
 
     
     // Fetch weather data from the API
-    const apiKey = '525b4a6ab93b3489f9f9c289047be1bd';
-    const apiUrlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
-    const apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid="${apiKey}&units=imperial`;
+    const apiKeyForecast = '525b4a6ab93b3489f9f9c289047be1bd';
+    const apiKeyCurrent = '0eecb216d874a8406d3d4509c3c745bc'
+    const apiUrlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKeyForecast}&units=imperial`;
+    const apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid="${apiKeyCurrent}&units=imperial`;
 
     //Make an API request and update the current weather    
     fetch(apiUrlCurrent)
@@ -80,12 +81,20 @@ function displayRecentCities() {
 
     // Add each recent city to the list
     for (const city of recentCities) {
-        const li = document.createElement('li');
-        li.textContent = city;
-        recentCitiesList.appendChild(li);
+        // const li = document.createElement('li');
+        // li.textContent = city;
+        // recentCitiesList.appendChild(li);
+        for (i = 0; i < recentCities.length; i++) {
+            var historyBtn = $("<button>");
+            historyBtn.text(recentCities[i]);
+            historyBtn.attr("data-location", recentCities[i]);
+            historyBtn.attr("class", "btn btn-info my-2 d-block")
+            historyBtn.on("click", function () {
+                searchWeather$(this).data("location");
+            });
     }
 }
-
+}
 // Function to display the current weather forecast
 //class="current-weather"
 function todayForecast(data) {
