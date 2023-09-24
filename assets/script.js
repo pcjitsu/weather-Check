@@ -20,7 +20,7 @@ function searchWeather() {
     
     // Fetch weather data from the API
     const apiKey = '525b4a6ab93b3489f9f9c289047be1bd';
-    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
 
     // Make an API request and update the forecast
     fetch(apiUrl)
