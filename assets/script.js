@@ -2,8 +2,7 @@
 const cityInput = document.getElementById('cityInput');
 const recentCitiesList = document.getElementById('recentCities');
 const forecastContainer = document.querySelector('.forecast');
-const searchButton= document.getElementById('citySearchBtn');
-
+const searchButton = document.getElementById('citySearchBtn');
 
 // Event handler for searching weather
 function searchWeather() {
@@ -17,14 +16,13 @@ function searchWeather() {
     // Save the city to local storage for recent searches
     saveRecentCity(city);
 
-    
     // Fetch weather data from the API
     const apiKeyForecast = '525b4a6ab93b3489f9f9c289047be1bd';
-    const apiKeyCurrent = '0eecb216d874a8406d3d4509c3c745bc'
+    const apiKeyCurrent = '0eecb216d874a8406d3d4509c3c745bc';
     const apiUrlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKeyForecast}&units=imperial`;
     const apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid="${apiKeyCurrent}&units=imperial`;
 
-    //Make an API request and update the current weather    
+    // Make an API request and update the current weather
     fetch(apiUrlCurrent)
         .then(response => response.json())
         .then(data => {
@@ -36,9 +34,6 @@ function searchWeather() {
             console.error('Error fetching weather data:', error);
             alert('Unable to fetch weather data. Please try again later.');
         });
-
-
-
 
     // Make an API request and update the forecast
     fetch(apiUrlForecast)
@@ -52,7 +47,7 @@ function searchWeather() {
             console.error('Error fetching weather data:', error);
             alert('Unable to fetch weather data. Please try again later.');
         });
-    };
+}
 
 // Function to save a recent city to local storage
 function saveRecentCity(city) {
@@ -68,7 +63,6 @@ function saveRecentCity(city) {
     // Save the updated list to local storage
     localStorage.setItem('recentCities', JSON.stringify(recentCities));
 
-
     displayRecentCities();
 }
 
@@ -79,37 +73,33 @@ function displayRecentCities() {
     // Clear the existing list
     recentCitiesList.innerHTML = '';
 
-    // Add each recent city to the list
+    // Add each recent city as a button
     for (const city of recentCities) {
-        // const li = document.createElement('li');
-        // li.textContent = city;
-        // recentCitiesList.appendChild(li);
-        for (i = 0; i < recentCities.length; i++) {
-            var historyBtn = $("<button>");
-            historyBtn.text(recentCities[i]);
-            historyBtn.attr("data-location", recentCities[i]);
-            historyBtn.attr("class", "btn btn-info my-2 d-block")
-            historyBtn.on("click", function () {
-                searchWeather$(this).data("location");
-            });
+        const historyBtn = document.createElement('button');
+        historyBtn.textContent = city;
+        historyBtn.className = 'btn btn-info my-2 d-block';
+        historyBtn.addEventListener('click', function () {
+            searchWeather(city); // Call searchWeather with the selected city
+        });
+        recentCitiesList.appendChild(historyBtn);
     }
 }
-}
+
 // Function to display the current weather forecast
-//class="current-weather"
 function todayForecast(data) {
-
-
+    // Implement your logic to display today's weather forecast
+    console.log('Today\'s weather forecast:', data);
 }
 
 // Function to update the weather forecast cards
-//class="forecast"
 function updateForecast(data) {
-
+    // Implement your logic to update the forecast cards
+    console.log('Updating forecast:', data);
 }
 
-//add Event Listener to search button
-searchButton.addEventListener("click", searchWeather);
+// Add Event Listener to search button
+searchButton.addEventListener('click', searchWeather);
 
 // Initial setup: Display recent cities
 displayRecentCities();
+
