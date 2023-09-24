@@ -4,6 +4,7 @@ const recentCitiesList = document.getElementById('recentCities');
 const forecastContainer = document.querySelector('.forecast');
 const searchButton= document.getElementById('citySearchBtn');
 
+
 // Event handler for searching weather
 function searchWeather() {
     const city = cityInput.value.trim();
@@ -16,8 +17,9 @@ function searchWeather() {
     // Save the city to local storage for recent searches
     saveRecentCity(city);
 
+    
     // Fetch weather data from the API
-    const apiKey = '525b4a6ab93b3489f9f9c289047be1b';
+    const apiKey = '525b4a6ab93b3489f9f9c289047be1bd';
     const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
 
     // Make an API request and update the forecast
@@ -26,6 +28,7 @@ function searchWeather() {
         .then(data => {
             // Process the data and update the forecast cards
             updateForecast(data);
+            console.log(data);
         })
         .catch(error => {
             console.error('Error fetching weather data:', error);
