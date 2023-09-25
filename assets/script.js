@@ -32,7 +32,6 @@ function searchWeather(city) {
     fetch(apiUrlCurrent)
         .then(response => response.json())
         .then(data => {
-            // Process the data and update the forecast cards
             todayForecast(data);
             console.log(data);
         })
@@ -45,7 +44,6 @@ function searchWeather(city) {
     fetch(apiUrlForecast)
         .then(response => response.json())
         .then(data => {
-            // Process the data and update the forecast cards
             updateForecast(data);
             console.log(data);
         })
@@ -124,8 +122,43 @@ function todayForecast(data) {
 
 // Function to update the weather forecast cards
 function updateForecast(data) {
-    // Implement your logic to update the forecast cards
+    // Checking Forecast Data
     console.log('Updating forecast:', data);
+       // Access the list of forecast data
+       const forecastList = data.list;
+
+       // Create a div to display the 5-day forecast
+       const forecastDiv = document.createElement('div');
+       forecastDiv.className = 'forecast-cards';
+   
+       // Loop through the forecast data and create forecast cards
+       for (let i = 0; i < 40; i += 8) {
+           // Access the relevant data for each forecast entry
+           const forecastTime = forecast.dt_txt;
+           const forecastTemp = forecast.main.temp;
+           const forecastDescription = forecast.weather[0].description;
+           const forecastIcon = forecast.weather[0].icon;
+   
+           // Create a div for each forecast card
+           const forecastCard = document.createElement('div');
+           forecastCard.className = 'forecast-card';
+           
+           // Use a template literal to set the inner HTML for each card
+           forecastCard.innerHTML = `
+               <p>${forecastTime}</p>
+               <p>Temperature: ${forecastTemp} °F</p>
+               <p>Description: ${forecastDescription}</p>
+               <p>Icon: ${forecastIcon}</p>
+           `;
+   
+           // Append the forecast card to the 'forecastDiv'
+           forecastDiv.appendChild(forecastCard);
+       }
+   
+       // Append the 'forecastDiv' to the 'forecastContainer'
+       forecastContainer.innerHTML = '';
+       forecastContainer.appendChild(forecastDiv); 
+
 }
 
 // Add Event Listener to search button
