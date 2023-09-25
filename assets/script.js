@@ -3,9 +3,16 @@ const cityInput = document.getElementById('cityInput');
 const recentCitiesList = document.getElementById('recentCities');
 const forecastContainer = document.querySelector('.forecast');
 const searchButton = document.getElementById('citySearchBtn');
-const citySearch = cityInput.value.trim();
+
 
 // Event handler for searching weather
+
+function citySearch(){
+    let city = cityInput.value.trim();
+    searchWeather(city);
+}
+
+
 function searchWeather(city) {
 
     if (city === '') {
@@ -97,7 +104,7 @@ function updateForecast(data) {
 }
 
 // Add Event Listener to search button
-searchButton.addEventListener('click', searchWeather(citySearch));
+searchButton.addEventListener('click', citySearch);
 
 // Initial setup: Display recent cities
 displayRecentCities();
