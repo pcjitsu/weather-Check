@@ -99,6 +99,8 @@ function todayForecast(data) {
     const currentWind = data.wind.speed;
     const currentHigh = data.main.temp_max;
     const currentLow = data.main.temp_min;
+    const currentIcon = data.weather[0].icon;
+    const currentHumidity = data.main.humidity;
 
     // Create a div to display today's weather
     const todayWeatherDiv = document.createElement('div');
@@ -112,6 +114,9 @@ function todayForecast(data) {
         <p>Wind: ${currentWind} mph</p>
         <p>High: ${currentHigh} °F</p>
         <p>Low: ${currentLow} °F</p>
+        <p>Icon: <img src=${' http://openweathermap.org/img/w/'+ currentIcon +'.png'}/></p>
+        <p>Humidity: ${currentHumidity}%</p>
+        
     `;
 
     // Append the div to the 'current-weather' container
@@ -139,6 +144,8 @@ function updateForecast(data) {
            const forecastTemp = forecastList.main.temp;
            const forecastDescription = forecastList.weather[0].description;
            const forecastIcon = forecastList.weather[0].icon;
+           const forecastWind = forecastList.wind.speed;
+           const forecastHumidity = forecastList.main.humidity;
    
            // Create a div for each forecast card
            const forecastCard = document.createElement('div');
@@ -149,6 +156,8 @@ function updateForecast(data) {
                <p>${forecastTime}</p>
                <p>Temperature: ${forecastTemp} °F</p>
                <p>Description: ${forecastDescription}</p>
+               <p>Wind: ${forecastWind} mph</p>
+               <p>Humidity: ${forecastHumidity}%</p>
                Icon: <img src=${' http://openweathermap.org/img/w/'+ forecastIcon +'.png'}/>
            `;
    
