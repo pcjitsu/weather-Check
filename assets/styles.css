@@ -1,12 +1,12 @@
-/* Add CSS for forecast cards */
+
 .forecast-cards {
     display: flex; 
-    flex-wrap: wrap; 
+    flex-wrap: nowrap; 
     justify-content: space-between; 
     gap: 20px; 
 }
 
-/* Add CSS for individual forecast card */
+
 .forecast-card {
     border: 2px solid black; 
     padding: 10px; 
