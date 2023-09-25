@@ -93,8 +93,33 @@ function displayRecentCities() {
 
 // Function to display the current weather forecast
 function todayForecast(data) {
-    // Implement your logic to display today's weather forecast
+    // Checking Today's Weather Data
     console.log('Today\'s weather forecast:', data);
+    // Access the relevant data from the 'data' object
+    const cityName = data.name;
+    const currentTemp = data.main.temp;
+    const currentWind = data.wind.speed;
+    const currentHigh = data.main.temp_max;
+    const currentLow = data.main.temp_min;
+
+    // Create a div to display today's weather
+    const todayWeatherDiv = document.createElement('div');
+    todayWeatherDiv.className = 'today-weather';
+    
+    // Setting Inner HTML to display the data
+    todayWeatherDiv.innerHTML = `
+        <h1>Today's Weather</h1>
+        <h3>${cityName}</h3>
+        <p>Temperature: ${currentTemp} °F</p>
+        <p>Wind: ${currentWind} mph</p>
+        <p>High: ${currentHigh} °F</p>
+        <p>Low: ${currentLow} °F</p>
+    `;
+
+    // Append the div to the 'current-weather' container
+    const currentWeatherContainer = document.querySelector('.current-weather');
+    currentWeatherContainer.innerHTML = '';
+    currentWeatherContainer.appendChild(todayWeatherDiv);
 }
 
 // Function to update the weather forecast cards
