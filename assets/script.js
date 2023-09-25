@@ -149,7 +149,7 @@ function updateForecast(data) {
                <p>${forecastTime}</p>
                <p>Temperature: ${forecastTemp} °F</p>
                <p>Description: ${forecastDescription}</p>
-               <p>Icon: ${forecastIcon}</p>
+               Icon: <img src=${' http://openweathermap.org/img/w/'+ forecastIcon +'.png'}/>
            `;
    
            // Append the forecast card to the 'forecastDiv'
