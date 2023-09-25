@@ -1,7 +1,7 @@
 // Get references to HTML elements
 const cityInput = document.getElementById('cityInput');
 const recentCitiesList = document.getElementById('recentCities');
-const forecastContainer = document.querySelector('.forecast');
+const forecastContainer = document.querySelector('.forecast-cards');
 const searchButton = document.getElementById('citySearchBtn');
 
 
@@ -134,10 +134,11 @@ function updateForecast(data) {
        // Loop through the forecast data and create forecast cards
        for (let i = 0; i < 40; i += 8) {
            // Access the relevant data for each forecast entry
-           const forecastTime = forecast.dt_txt;
-           const forecastTemp = forecast.main.temp;
-           const forecastDescription = forecast.weather[0].description;
-           const forecastIcon = forecast.weather[0].icon;
+              const forecastList = data.list[i];
+           const forecastTime = forecastList.dt_txt;
+           const forecastTemp = forecastList.main.temp;
+           const forecastDescription = forecastList.weather[0].description;
+           const forecastIcon = forecastList.weather[0].icon;
    
            // Create a div for each forecast card
            const forecastCard = document.createElement('div');
