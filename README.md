@@ -43,4 +43,4 @@ For Questions go to my Repo at [https://github.com/pcjitsu/]
 
 ## Contact
 
-For any questions or inquiries, feel free to reach out to me at pcjitsu@gmail.com.
+For any questions or inquiries, feel free to reach out to me at pcjitsu@gmail.com and thank you!
